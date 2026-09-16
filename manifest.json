@@ -3,6 +3,12 @@
   "name": "FolderMark",
   "version": "1.0.0",
   "description": "One-click bookmark to a folder you choose. Works on any site. Fully configurable.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "foldermark@shaheeralimm",
+      "strict_min_version": "109.0"
+    }
+  },
   "permissions": ["activeTab", "tabs", "bookmarks", "contextMenus", "storage"],
   "options_page": "options.html",
   "background": {

@@ -10,3 +10,6 @@ xcuserdata
 
 # Kiro
 .kiro/
+
+# Build artifacts
+*.zip

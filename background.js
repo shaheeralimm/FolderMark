@@ -141,9 +141,16 @@ async function showBadge(tabId, result) {
   const map = { added: "✓", duplicate: "=", error: "!" };
   const text  = map[result] ?? "";
   const color = BADGE_COLORS[result] ?? "#888";
-  await chrome.action.setBadgeText({ text, tabId });
-  await chrome.action.setBadgeBackgroundColor({ color, tabId });
-  setTimeout(() => chrome.action.setBadgeText({ text: "", tabId }), 3000);
+  // Firefox MV3 doesn't support tabId on badge APIs — fall back to global badge
+  try {
+    await chrome.action.setBadgeText({ text, tabId });
+    await chrome.action.setBadgeBackgroundColor({ color, tabId });
+    setTimeout(() => chrome.action.setBadgeText({ text: "", tabId }), 3000);
+  } catch {
+    await chrome.action.setBadgeText({ text });
+    await chrome.action.setBadgeBackgroundColor({ color });
+    setTimeout(() => chrome.action.setBadgeText({ text: "" }), 3000);
+  }
 }
 
 async function setBadge({ text, color = "#4CAF50" }) {
