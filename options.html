@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FolderMark Settings</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="page-header">
+      <img src="icons/icon48.png" alt="" class="logo" />
+      <div>
+        <h1>FolderMark</h1>
+        <p class="subtitle">Map domains to bookmark folders. One click saves the page.</p>
+      </div>
+    </header>
+
+    <!-- ── Rules ──────────────────────────────────────────────────── -->
+    <section aria-labelledby="rulesHeading">
+      <h2 id="rulesHeading">Domain → Folder rules</h2>
+      <p class="hint">
+        When you click the extension icon on a matching site, the page is
+        bookmarked into that folder. Subdomains are matched automatically —
+        adding <strong>example.com</strong> also covers <strong>sub.example.com</strong>.
+      </p>
+
+      <div class="input-group">
+        <div class="field">
+          <label for="domainInput">Domain or URL</label>
+          <input id="domainInput" type="text" placeholder="example.com or https://example.com/page" aria-label="Domain or URL" />
+        </div>
+        <div class="field">
+          <label for="folderSelect">Bookmark folder</label>
+          <select id="folderSelect" aria-label="Bookmark folder">
+            <option value="">— pick a folder —</option>
+          </select>
+        </div>
+        <button id="addRuleBtn" type="button">Add rule</button>
+      </div>
+
+      <ul id="ruleList" class="item-list" aria-live="polite" aria-label="Configured rules"></ul>
+
+      <div class="actions">
+        <button id="exportBtn" type="button" class="ghost">Export rules</button>
+        <label class="ghost-label">
+          Import rules
+          <input id="importFile" type="file" accept=".json" hidden />
+        </label>
+        <span id="rulesStatus" class="status" role="status" aria-live="polite"></span>
+      </div>
+    </section>
+
+    <!-- ── Rewrite ─────────────────────────────────────────────────── -->
+    <section class="rewrite-section" aria-labelledby="rewriteHeading">
+      <h2 id="rewriteHeading">Bulk rewrite bookmark URLs</h2>
+      <p class="hint">
+        Replace only the site origin — everything after <code>/</code> stays the
+        same. Useful when a site moves to a new domain.
+      </p>
+
+      <div class="rewrite-grid">
+        <label class="field-label" for="fromUrlInput">Old site</label>
+        <input id="fromUrlInput" type="text" placeholder="https://old-site.com" aria-label="Old site origin" />
+
+        <label class="field-label" for="toUrlInput">New site</label>
+        <input id="toUrlInput" type="text" placeholder="https://new-site.com" aria-label="New site origin" />
+      </div>
+
+      <div class="actions rewrite-actions">
+        <button id="previewRewriteBtn" type="button" class="ghost">Preview matches</button>
+        <button id="rewriteBtn" type="button">Rewrite bookmarks</button>
+        <span id="rewriteStatus" class="status" role="status" aria-live="polite"></span>
+      </div>
+
+      <ul id="rewritePreview" class="rewrite-preview" aria-live="polite" aria-label="Rewrite preview"></ul>
+    </section>
+  </main>
+
+  <script type="module" src="options.js"></script>
+</body>
+</html>
