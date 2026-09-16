@@ -6,13 +6,18 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "foldermark@shaheeralimm",
-      "strict_min_version": "109.0"
+      "strict_min_version": "126.0",
+      "data_collection_permissions": {
+        "required": [],
+        "optional": []
+      }
     }
   },
   "permissions": ["activeTab", "tabs", "bookmarks", "contextMenus", "storage"],
   "options_page": "options.html",
   "background": {
     "service_worker": "background.js",
+    "scripts": ["background.js"],
     "type": "module"
   },
   "action": {
